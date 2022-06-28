@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #df6621;">
+  <div class="container-fluid">
+    <%= link_to "Coding Ninjas", root_path, class: "navbar-brand mx-3" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item fs-4 mx-4">
+          <% if user_signed_in? %>
+            Welcome <span class="bg-info rounded-pill p-1"><%= current_user.email %></span>
+          <% end %>
+        </li>
+      </ul>
+      <div>
+        <% if user_signed_in? %>
+          <button type="button" class="btn btn-warning mb-2">
+            <%= link_to "Sign Out", destroy_user_session_path, class: "text-decoration-none text-light", data: { turbo_method: :delete } %>
+          </button>
+        <% else %>
+          <button type="button" class="btn btn-success mb-2">
+            <%= link_to "Sign In", new_user_session_path, class: "text-decoration-none text-light"%>
+          </button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</nav>

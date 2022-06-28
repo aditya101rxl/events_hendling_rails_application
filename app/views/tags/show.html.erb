@@ -1,0 +1,31 @@
+<h1>Showing result for tag: <span class="badge bg-success"><%=@tag.name%></span></h1>
+
+<% @tag.taggables.each do |taggable| %>
+	<hr>
+	<div class="container">
+	  <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+		<div class="row">
+			<div class="col-md-4">
+				<div class="card w-100">
+				  <img class="img-fluid card-img-top" style="max-height: 17rem;" src=<%= taggable.event.image %>>
+				</div>
+			</div>
+			<div class="col-md-8">
+				<div class="card w-100 h-100">
+					<div class="card-header">
+				    <h3><span style="color: tomato; text-decoration-color: darkred;"><%= taggable.event.title %></span></h3>
+				  </div>
+				  <div class="card-body">
+				    <p class="fs-5"><strong>Tags: </strong> 
+				    	<% taggable.event.tags.each do |tag| %>
+								<%= link_to tag do %><span class="badge bg-success"><%=tag.name%></span><% end %>
+							<% end %>
+							<div class="col-sm"><button type="button" class="btn btn-primary"><%= link_to "View", taggable.event, class: "text-decoration-none text-light" %></button></div>
+						</div>
+				    </p>
+				  </div>
+			</div>
+		</div>
+	</div>
+<% end %>
+

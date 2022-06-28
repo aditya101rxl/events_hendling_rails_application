@@ -1,0 +1,47 @@
+<% if !current_user.isAdmin %>
+  <h1 class="text-center bg-info p-2">You Don't have permission to view this page.</h1>
+  <h1 class="text-center bg-warning p-2"><span class="text-primary"><%= current_user.email %></span> is not an admin.</h1>
+<% end %>
+
+
+<div class="bg-info mb-2 fs-2 d-flex justify-content-between">
+  <% if current_user.isAdmin %>
+    <div>All Events</div>
+    <div>
+      <button type="button" class="btn btn-success mb-2">
+        <%= link_to "Add event", new_event_path, class: "text-decoration-none text-light"%>
+      </button>
+    </div>
+  <% end %>
+</div>
+
+<% if current_user.isAdmin %>
+  <table class="table table-striped">
+    <thead class="table-info">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Type</th>
+        <th scope="col">Registration start</th>
+        <th scope="col">Registration end</th>
+        <th scope="col">Fees</th>
+        <th scope="col">venue</th>
+        <th scope="col">View</th>
+      </tr>
+    </thead>
+    <tbody>
+    	<% @events.each do |event| %>
+  	    <tr>
+  	      <th scope="row"><%= event.id%></th>
+  	      <td><%= event.title%></td>
+  	      <td><%= event.event_type%></td>
+  	      <td><%= event.registration_start%></td>
+  	      <td><%= event.registration_end%></td>
+  	      <td><%= event.fees%></td>
+  	      <td><%= event.venue%></td>
+  	      <td><%= link_to "View", event %></td>
+  	    </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

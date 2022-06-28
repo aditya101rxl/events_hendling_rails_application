@@ -1,0 +1,89 @@
+
+<%= form_with model: @event do |form| %>
+
+  <div class="form-group">
+    <div class="form-group input-group mb-3">
+      <span class="input-group-text mx-1 px-5"><%= form.label :title %></span>
+      <%= form.text_field :title, class: "form-control" %>
+    </div>
+    <% @event.errors.full_messages_for(:title).each do |message| %>
+      <div class="bg-warning"><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <div class="form-group input-group mb-3">
+      <span class="input-group-text mx-1 px-4"><%= form.label :description %></span>
+      <%= form.text_area :description, size: "70x7", class: "form-control" %>
+    </div>
+    <% @event.errors.full_messages_for(:description).each do |message| %>
+      <div class="bg-warning"><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <span class="mx-1 text-info">Upload your image <a href="https://postimages.org/", target="#"> here</a> and paste image url below.</span>
+    <div class="form-group input-group mb-3">
+      <span class="input-group-text mx-1 px-5"><%= form.label :image %></span>
+      <%= form.text_field :image, class: "form-control" %>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <div class="form-group input-group mb-3">
+      <span class="input-group-text mx-1 px-1"><%= form.label :registration_start %></span>
+      <%= form.datetime_local_field :registration_start, class: "form-control" %>
+
+      <span class="input-group-text mx-1 px-1"><%= form.label :registration_end %></span>
+      <%= form.datetime_local_field :registration_end, class: "form-control" %>
+    </div>
+    <% @event.errors.full_messages_for(:registration_start).each do |message| %>
+      <div class="bg-warning"><%= message %></div>
+    <% end %>
+    <% @event.errors.full_messages_for(:registration_end).each do |message| %>
+      <div class="bg-warning"><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <div class="form-group input-group mb-3">
+      <span class="input-group-text mx-1 px-5"><%= form.label :fees %></span>
+      <%= form.text_field :fees, class: "form-control" %>
+      <span class="input-group-text">.00</span>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <div class="form-group input-group mb-3">
+      <span class="input-group-text mx-1 px-5"><%= form.label :venue %></span>
+      <%= form.text_area :venue, size: "70x2", class: "form-control" %>
+    </div>
+    <% @event.errors.full_messages_for(:venue).each do |message| %>
+      <div class="bg-warning"><%= message %></div>
+    <% end %>
+  </div>
+
+
+  <div class="form-group">
+    <div class="form-group input-group mb-3">
+      <span class="input-group-text mx-1 px-4"><%= form.label :event_type %></span>
+      <%= form.select :event_type, ["Coding", "Bootcamp", "Webinar", "Workshop"], selected: "Coding" %>
+      <span class="input-group-text mx-1 px-4"><%= form.label :tags %></span>
+      <%= form.text_field :tags, value: event.tags.map(&:name).join(", "), class: "form-control" %>
+    </div>
+    <% @event.errors.full_messages_for(:event_type).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+    <% @event.errors.full_messages_for(:tags).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  
+  </div>
+
+  <div>
+    <%= form.submit "Create event", class: "form-control btn btn-outline-success px-3 mb-5 mt-4" %>
+  </div>
+<% end %>
+

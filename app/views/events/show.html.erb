@@ -1,0 +1,64 @@
+<div class="container">
+  <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+	<div class="row">
+		<div class="col-md-4">
+			<div class="card w-100">
+		  <img class="img-fluid card-img-top" style="height: 17rem;" src=<%= @event.image %>>
+		</div>
+		</div>
+		<div class="col-md-8">
+			<div class="card w-100 h-100">
+				<div class="card-header">
+			    <h3><span style="color: tomato; text-decoration-color: darkred;"><%= @event.title %></span></h3>
+			  </div>
+			  <div class="card-body">
+			    <p class="fs-5"><strong>Tags: </strong> 
+			    	<% @event.tags.each do |tag| %>
+							<%= link_to tag do %><span class="badge bg-success"><%=tag.name%></span><% end %>
+						<% end %>
+			    </p>
+			    <div>
+					  <div class="row">
+					    <div class="col-sm">
+					    	<U>Registration start on:</U> <span style="color: green;"><%=@event.registration_start%> </span>
+					    </div>
+					    <div class="col-sm">
+					    	<U>Registration end on:</U> <span style="color: red;"><%=@event.registration_end%> </span>
+					    </div>
+					  </div>
+					</div>
+					<hr style="color: darkgoldenrod;">
+			    <p class="card-text"><%= @event.description %></p>
+					<hr style="color: darkgoldenrod;">
+					<h6>Venue: <span style="color: goldenrod;"><%=@event.venue%></span></h6>
+					<h6>Registration fees:
+						<% if @event.fees==0 %>
+							<span class="px-3" style="background-color: green; border-radius: 10%; text-decoration-color: white;">FREE</span>
+						<% else %>
+							<span><%=@event.fees%></span>
+						<% end %>
+					</h6>
+			  </div>
+				<div class="card-footer text-muted">
+			    <div class="container">
+					  <div class="row">
+					    <div class="col-sm"><button type="button" class="btn btn-success"><%= link_to "Home", root_path, class: "text-decoration-none text-light" %></button></div>
+					    <div class="col-sm"><button type="button" class="btn btn-secondary"><%= link_to "Edit", edit_event_path(@event), class: "text-decoration-none text-light" %></button></div>
+					    <div class="col-sm"><button type="button" class="btn btn-danger">
+					    	<%= link_to "Delete", @event, data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "text-decoration-none text-light"%>
+					    	</button></div>
+					  </div>
+					</div>
+			  </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<!-- install this to make delete_request working -->
+<!-- $ rails importmap:install  -->
+<!-- $ rails turbo:install stimulus:install -->
+<!-- https://github.com/rails/rails/issues/44185#:~:text=First%20do%20this-,%24%20rails%20importmap%3Ainstall%20%24%20rails%20turbo%3Ainstall%20stimulus%3Ainstall,-you%20may%20have -->
+
