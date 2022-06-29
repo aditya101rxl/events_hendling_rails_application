@@ -7,8 +7,23 @@ Rails.application.routes.draw do
   }
   # Defines the root path route ("/")
   root "events#index"
-  
-  get "events/addEvent"
+
+
+  namespace :api do
+    get "events"
+    get "search"
+    get "login"
+    get "register"
+    get "login_failed"
+  end
+
+  ## both are same
+  # resources :api, only: [] do
+  #   collection do
+  #     get :events
+  #     get :search
+  #   end
+  # end
   
   get 'tags/index'
 
