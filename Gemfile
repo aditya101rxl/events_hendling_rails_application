@@ -78,3 +78,5 @@ end
 # additional installation
 # for authentication
 gem 'devise'
+
+gem 'rack-cors'

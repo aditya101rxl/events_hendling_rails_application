@@ -69,12 +69,12 @@
   <div class="form-group">
     <div class="form-group input-group mb-3">
       <span class="input-group-text mx-1 px-4"><%= form.label :event_type %></span>
-      <%= form.select :event_type, ["Coding", "Bootcamp", "Webinar", "Workshop"], selected: "Coding" %>
+      <%= form.select :event_type, ["Coding", "Bootcamp", "Webinar", "Workshop"] %>
       <span class="input-group-text mx-1 px-4"><%= form.label :tags %></span>
       <%= form.text_field :tags, value: event.tags.map(&:name).join(", "), class: "form-control" %>
     </div>
     <% @event.errors.full_messages_for(:event_type).each do |message| %>
-      <div><%= message %></div>
+      <div class="bg-warning"><%= message %></div>
     <% end %>
     <% @event.errors.full_messages_for(:tags).each do |message| %>
       <div><%= message %></div>

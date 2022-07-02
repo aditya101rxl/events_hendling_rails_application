@@ -70,6 +70,11 @@ class EventsController < ApplicationController
                       :registration_end, :fees, :venue, :event_type, :tags)
     end
 
+    def check_option
+      if params[:event_type] == "select"
+        render :edit, status: :unprocessable_entity
+      end
+    end
 
   def addEvent
   end

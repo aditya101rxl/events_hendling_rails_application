@@ -1,5 +1,6 @@
 class TagsController < ApplicationController
   before_action :is_admin
+  
   def index
     @tags = Tag.all
   end

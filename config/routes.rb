@@ -11,11 +11,12 @@ Rails.application.routes.draw do
 
   namespace :api do
     get "events"
-    get "search"
+    get "tags"
     get "login"
     get "register"
-    get "login_failed"
   end
+
+  # api/login/paran...
 
   ## both are same
   # resources :api, only: [] do
