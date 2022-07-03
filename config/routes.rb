@@ -10,9 +10,10 @@ Rails.application.routes.draw do
 
 
   namespace :api do
-    get "events"
-    get "tags"
     get "login"
+    get "tags"
+    get "event"
+    get "events"
     get "register"
   end
 

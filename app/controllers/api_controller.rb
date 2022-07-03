@@ -30,6 +30,17 @@ class ApiController < ApplicationController
     all_tags = Tag.select(:name)
     render json: all_tags
   end
+
+
+
+
+  # action for getting event having id
+  def event
+    event_id = params[:id]
+    @event = Event.find(event_id)
+
+    render json: @event
+  end
   
 
 
