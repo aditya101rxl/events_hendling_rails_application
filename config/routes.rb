@@ -7,27 +7,21 @@ Rails.application.routes.draw do
   }
   # Defines the root path route ("/")
   root "events#index"
-
+  get 'tags/index'
 
   namespace :api do
-    get "login"
-    get "tags"
-    get "event"
-    get "events"
-    get "register"
+    resources :auth, only: [] do 
+      collection do
+        get :login, :register
+      end
+    end
+    resources :events, only: [] do
+      collection do
+        get :tags, :event, :events, :register, :unregister
+      end
+    end
   end
 
-  # api/login/paran...
-
-  ## both are same
-  # resources :api, only: [] do
-  #   collection do
-  #     get :events
-  #     get :search
-  #   end
-  # end
-  
-  get 'tags/index'
 
   # handling all requests related to events
   # get "/events", to: "events#index"
