@@ -12,12 +12,12 @@ Rails.application.routes.draw do
   namespace :api do
     resources :auth, only: [] do 
       collection do
-        get :login, :register
+        get :login, :register, :restoreUser
       end
     end
     resources :events, only: [] do
       collection do
-        get :tags, :event, :events, :register, :unregister
+        get :tags, :event, :events, :register, :unregister, :isRegister
       end
     end
   end

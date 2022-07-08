@@ -1,5 +1,5 @@
 class Api::EventsController < Api::BaseController
-	skip_before_action :authorize_request, except: [:register, :unregister]
+	skip_before_action :authorize_request, except: [:register, :unregister, :isRegister]
 	
 	def tags
 		all_tags = Tag.select(:name)
@@ -11,6 +11,13 @@ class Api::EventsController < Api::BaseController
     @event = Event.find(event_id)
     render json: @event
 	end
+
+  def isRegister
+    event_id = params[:event_id]
+    user_id = @current_user.id
+    @found = Registerable.find_by(event_id: event_id, user_id: user_id);
+    render json: @found
+  end
 
 	def events
 		event_type = params[:event_type]
