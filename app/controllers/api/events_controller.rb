@@ -40,14 +40,15 @@ class Api::EventsController < Api::BaseController
 	end
 
 	def register
+    @user = @current_user
 		@relation = Registerable.new(
-      :user_id => params[:user_id],
+      :user_id => @user.id,
       :event_id => params[:event_id]
       );
     if @relation.save
-      render json: {data: @relation, msg: "registeration successful"};
+      render json: {data: @relation, user: @user, msg: "registeration successful"}, status: :ok
     else
-      render json: {error: 'failed', msg: "registeration failed"};
+      render json: {error: 'failed', msg: "registeration failed"}, status: :unauthorized
     end
 	end
 
