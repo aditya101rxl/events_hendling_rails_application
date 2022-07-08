@@ -1,5 +1,5 @@
 class Api::EventsController < Api::BaseController
-	# skip_before_action :authorize_request
+	skip_before_action :authorize_request, except: [:register, :unregister]
 	
 	def tags
 		all_tags = Tag.select(:name)
