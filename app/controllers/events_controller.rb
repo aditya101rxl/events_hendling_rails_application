@@ -7,6 +7,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @registerd_users = User.joins(:registerables).where(registerables: {event_id: @event.id});
   end
   
   def new
